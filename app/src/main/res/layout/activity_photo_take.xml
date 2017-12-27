@@ -13,8 +13,43 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/start_take_video_selector" />
+    <ProgressBar
+        android:id="@+id/progress_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtNetUrl"
+        android:layout_marginTop="130dp"
+        android:autoLink="web"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_progress"
+        android:layout_marginTop="170dp"
+        />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="190dp"
+    >
+    <Button android:text="暂停"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_cancel"
 
+        style="@android:style/Widget.Button" />
+    <Button android:text="上传"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_http_upload"
 
+        style="@android:style/Widget.Button" />
+</LinearLayout>
     <view.RecyclerViewEmptySupport
         android:id="@+id/video_list"
         android:layout_width="match_parent"

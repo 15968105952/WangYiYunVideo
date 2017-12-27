@@ -1023,6 +1023,7 @@ public class ShortVideoEditActivity extends BaseActivity implements View.OnClick
             if (metaData != null) {
                 videoWidth = metaData.width;
                 videoHeight = metaData.height;
+
             }
             para.setStart(1);
             para.setInterval(0);

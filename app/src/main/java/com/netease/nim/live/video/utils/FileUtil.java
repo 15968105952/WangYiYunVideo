@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.Locale;
 
 public class FileUtil {
-    private static final String TAG = "FileUtil";
+    private static final String TAG = "VnFileUtil";
 
     public static boolean hasExtentsion(String filename) {
         int dot = filename.lastIndexOf('.');

@@ -1,5 +1,6 @@
 package com.netease.nim.live;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.content.Context;
 import android.util.SparseArray;
@@ -11,7 +12,7 @@ import com.netease.nimlib.sdk.StatusBarNotificationConfig;
  * Created by jezhee on 2/20/15.
  */
 public class DemoCache {
-
+    private static Activity visibleActivity; //处于 onResume~onPause生命周期内的Activity
     private static Context context;
 
     private static String account;
@@ -61,5 +62,12 @@ public class DemoCache {
 
     public static boolean isMainTaskLaunching() {
         return mainTaskLaunching;
+    }
+    public static Activity getVisibleActivity() {
+        return visibleActivity;
+    }
+
+    public static void setVisibleActivity(Activity visibleActivity) {
+        DemoCache.visibleActivity = visibleActivity;
     }
 }

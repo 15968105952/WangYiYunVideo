@@ -1,1 +1,1 @@
-include ':app', ':uikit', ':jrmfneteaselib', ':faceunity'
+include ':app', ':uikit', ':jrmfneteaselib', ':faceunity', ':vcloudnosupload'

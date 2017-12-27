@@ -3,7 +3,7 @@
     package="com.faceunity" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="16"
         android:targetSdkVersion="26" />
 
     <application

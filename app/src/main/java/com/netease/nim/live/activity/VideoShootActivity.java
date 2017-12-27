@@ -693,7 +693,7 @@ public class VideoShootActivity extends UI implements MediaCaptureController.Med
         }
         if (videoPathList.size() > 0 && videoPathList.size() > currentCount) {
             // 上一步操作, 删除刚刚录制的文件
-//            FileUtil.deleteFile(videoPathList.get(currentCount));
+//            VnFileUtil.deleteFile(videoPathList.get(currentCount));
             videoPathList.remove(currentCount);
         }
         updateStopRecodingUI();
@@ -815,7 +815,7 @@ public class VideoShootActivity extends UI implements MediaCaptureController.Med
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
-       /* if (requestCode == VideoImportActivity.EXTRA_REQUEST_CODE) {
+     /*   if (requestCode == VideoImportActivity.EXTRA_REQUEST_CODE) {
             // 导入视频成功
             currentCount++;
             if (currentCount == videoCaptureParams.getCount()) {
@@ -825,7 +825,7 @@ public class VideoShootActivity extends UI implements MediaCaptureController.Med
             }
             updateStopRecodingUI();
 
-        } else if (requestCode == ShortVideoEditActivity.EXTRA_REQUEST_CODE) {
+        } else*/ if (requestCode == ShortVideoEditActivity.EXTRA_REQUEST_CODE) {
             hasDone = false;
             if (data.getBooleanExtra(ShortVideoEditActivity.EXTRA_EDIT_DONE, false)) {
                 // 视频编辑完成
@@ -846,6 +846,6 @@ public class VideoShootActivity extends UI implements MediaCaptureController.Med
                     updateStopRecodingUI();
                 }
             }
-        }*/
+        }
     }
 }

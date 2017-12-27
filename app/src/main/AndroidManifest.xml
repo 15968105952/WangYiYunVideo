@@ -61,7 +61,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <!-- 测试activity -->
-        <activity android:name="com.netease.nim.live.others.MainActivity" />
+        <activity android:name="com.netease.nim.live.others.PhotoTakeActivity" />
         <!-- 如果IDE是Eclipse，此处可将build.gradle中的AMAP_KEY定义拷贝过来。 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"

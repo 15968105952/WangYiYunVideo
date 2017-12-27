@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/faceunity" />
             <option value="$PROJECT_DIR$/jrmfneteaselib" />
             <option value="$PROJECT_DIR$/uikit" />
+            <option value="$PROJECT_DIR$/vcloudnosupload" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
