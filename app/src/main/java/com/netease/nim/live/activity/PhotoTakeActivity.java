@@ -1,10 +1,12 @@
 package com.netease.nim.live.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netease.cloud.nos.android.core.CallRet;
+import com.netease.nim.live.DemoCache;
 import com.netease.nim.live.R;
 import com.netease.nim.live.adapter.VideoAdapter;
 import com.netease.nim.live.modle.UploadState;
@@ -25,6 +28,7 @@ import com.netease.nim.live.modle.VideoItem;
 import com.netease.nim.live.testuploadvideo.NOSUpload;
 import com.netease.nim.live.testuploadvideo.NOSUploadHandler;
 import com.netease.nim.live.video.http.UploadType;
+import com.netease.nim.live.video.utils.NetworkUtils;
 import com.netease.nim.uikit.common.ui.dialog.EasyAlertDialogHelper;
 import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseFetchLoadAdapter;
 import com.netease.nim.uikit.common.ui.recyclerview.listener.OnItemClickListener;
@@ -53,6 +57,10 @@ public class PhotoTakeActivity extends AppCompatActivity implements View.OnClick
     private List<VideoItem> items; // 视频item列表
     VideoAdapter videoAdapter;
     private File mFile;
+    private boolean allowMobileNetwork = false; //是否允许移动网络进行上传
+    private boolean needToAlert = true;
+    private boolean needResumeUpload; //是否需要恢复上传
+    private AlertDialog MobileNetworkDialog; //移动网络的提示框
     /*测试上传*/
     private String mNosToken, mBucket, mObject;
     private NOSUpload nosUpload;
@@ -78,7 +86,6 @@ public class PhotoTakeActivity extends AppCompatActivity implements View.OnClick
                     txtNetUrl.setText("http://nos.netease.com/" + mBucket + "/" + mObject);
                     /*判断网络*/
                     checkNetWork();
-                    httpUpload();
                     break;
                 }
                 case HandleMsg.MSG_INIT_FAIL: {
@@ -107,7 +114,47 @@ public class PhotoTakeActivity extends AppCompatActivity implements View.OnClick
     });
 
     private void checkNetWork() {
+        if (!allowMobileNetwork && NetworkUtils.getNetworkType() == NetworkUtils.TYPE_MOBILE) {
 
+            if (!needToAlert) return;
+
+            needResumeUpload = true;
+            try {
+                //Context传入DemoCache.getVisibleActivity(), 则在其他页面也可弹窗提示
+                AlertDialog.Builder builder = new AlertDialog.Builder(DemoCache.getVisibleActivity() == null ? PhotoTakeActivity.this : DemoCache.getVisibleActivity());
+                builder.setMessage("正在使用手机流量上传, 是否继续?");
+                builder.setPositiveButton("是",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                allowMobileNetwork = true;
+                                httpUpload();
+                            }
+                        });
+                builder.setNegativeButton("否",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //若提示且用户不上传, 则依赖后续网络切换至WIFI自动上传
+                                allowMobileNetwork = false;
+                                needToAlert = false;
+                                Toast.makeText(PhotoTakeActivity.this.getApplicationContext(), "待连接至WIFI网络后,继续上传", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+
+                            }
+                        });
+                builder.setCancelable(false);
+
+                if (MobileNetworkDialog == null || !MobileNetworkDialog.isShowing()) {
+                    MobileNetworkDialog = builder.show();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else {
+            httpUpload();
+        }
     }
 
     @Override
@@ -304,9 +351,11 @@ public class PhotoTakeActivity extends AppCompatActivity implements View.OnClick
         if (!NetworkUtil.isNetAvailable(PhotoTakeActivity.this)) {
             EasyAlertDialogHelper.showOneButtonDiolag(PhotoTakeActivity.this, null, getString(R.string.network_is_not_available),
                     getString(R.string.i_know), false, null);
+            return;
         }
         if(mFile == null){
             Toast.makeText(PhotoTakeActivity.this, "please select file first!", Toast.LENGTH_SHORT).show();
+            return;
         }
         String name = mFile.getName();
 
@@ -334,9 +383,14 @@ public class PhotoTakeActivity extends AppCompatActivity implements View.OnClick
 /*上传视频*/
     private void httpUpload() {
 
-
+        if (!NetworkUtil.isNetAvailable(PhotoTakeActivity.this)) {
+            EasyAlertDialogHelper.showOneButtonDiolag(PhotoTakeActivity.this, null, getString(R.string.network_is_not_available),
+                    getString(R.string.i_know), false, null);
+            return;
+        }
         if(mFile == null){
             Toast.makeText(PhotoTakeActivity.this, "please select file first!", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         new Thread(new Runnable() {
