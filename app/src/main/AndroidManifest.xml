@@ -250,6 +250,8 @@
         <activity android:name="com.netease.nim.live.activity.ChangeActivity" />
         <activity android:name="com.netease.nim.live.activity.PhotoTakeActivity" />
         <activity android:name="com.netease.nim.live.activity.ContactsActivity"></activity>
+        <!--上传视频服务-->
+        <service android:name=".controller.UploadService" />
     </application>
 
 </manifest>
