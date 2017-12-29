@@ -225,6 +225,46 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
     /**
      * fetch complete
      */
+    public void fetchMoreComplete(final RecyclerView recyclerView, final List<T> newData) {
+        addFrontData(newData); // notifyItemRangeInserted从顶部向下加入View，顶部View并没有改变
+
+        if (getFetchMoreViewCount() == 0) {
+            return;
+        }
+
+        fetchMoreComplete(recyclerView, newData.size());
+    }
+
+    public void fetchMoreComplete(final RecyclerView recyclerView, int newDataSize) {
+        if (getFetchMoreViewCount() == 0) {
+            return;
+        }
+
+        mFetching = false;
+        mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+        notifyItemChanged(0);
+
+        // 定位到insert新消息前的top消息位置。必须移动，否则还在顶部，会继续fetch!!!
+        if (recyclerView != null) {
+            RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+            // 只有LinearLayoutManager才有查找第一个和最后一个可见view位置的方法
+            if (layoutManager instanceof LinearLayoutManager) {
+                LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                //获取第一个可见view的位置
+                int firstItemPosition = linearManager.findFirstVisibleItemPosition();
+                if (firstItemPosition == 0) {
+                    // 最顶部可见的View已经是FetchMoreView了，那么add数据&局部刷新后，要进行定位到上次的最顶部消息。
+                    recyclerView.scrollToPosition(newDataSize + getFetchMoreViewCount());
+                }
+            } else {
+                recyclerView.scrollToPosition(newDataSize);
+            }
+        }
+    }
+
+    /**
+     * fetch complete
+     */
     public void fetchMoreComplete(final List<T> newData) {
         addFrontData(newData); // notifyItemRangeInserted从顶部向下加入View，顶部View并没有改变
 
@@ -261,6 +301,29 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
             }
         }
     }
+
+    /**
+     * fetch end, no more data
+     *
+     * @param gone if true gone the fetch more view
+     */
+    public void fetchMoreEnd(boolean gone) {
+        if (getFetchMoreViewCount() == 0) {
+            return;
+        }
+        mFetching = false;
+        mNextFetchEnable = false;
+        mFetchMoreView.setLoadMoreEndGone(gone);
+        if (gone) {
+            notifyItemRemoved(0);
+        } else {
+            mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_END);
+            notifyItemChanged(0);
+        }
+    }
+
+
+
 
     /**
      * fetch end, no more data

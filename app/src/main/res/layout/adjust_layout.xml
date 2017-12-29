@@ -15,7 +15,7 @@
         android:layout_marginLeft="20dp"
         android:layout_weight="1">
 
-        <com.netease.nim.live.video.view.TwoWaysVerticalSeekBar
+        <com.netease.nim.demo.video.view.TwoWaysVerticalSeekBar
             android:id="@+id/brightness_seekbar"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <com.netease.nim.live.video.view.TwoWaysVerticalSeekBar
+        <com.netease.nim.demo.video.view.TwoWaysVerticalSeekBar
             android:id="@+id/contrast_seekbar"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <com.netease.nim.live.video.view.TwoWaysVerticalSeekBar
+        <com.netease.nim.demo.video.view.TwoWaysVerticalSeekBar
             android:id="@+id/saturation_seekbar"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <com.netease.nim.live.video.view.TwoWaysVerticalSeekBar
+        <com.netease.nim.demo.video.view.TwoWaysVerticalSeekBar
             android:id="@+id/color_temperature_seekbar"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
@@ -104,7 +104,7 @@
         android:layout_marginRight="20dp"
         android:layout_weight="1">
 
-        <com.netease.nim.live.video.view.TwoWaysVerticalSeekBar
+        <com.netease.nim.demo.video.view.TwoWaysVerticalSeekBar
             android:id="@+id/sharpness_seekbar"
             android:layout_width="wrap_content"
             android:layout_height="150dp"

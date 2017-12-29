@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp" />
 
-    <com.netease.nim.live.video.view.CircleProgressView
+    <com.netease.nim.demo.video.view.CircleProgressView
         android:id="@+id/loading_view"
         android:layout_width="70dp"
         android:layout_height="70dp"

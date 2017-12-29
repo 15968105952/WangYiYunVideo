@@ -11,7 +11,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
-            abiFilters  "armeabi-v7a"
+            abiFilters  "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
         }
         //添加部分
         javaCompileOptions {
@@ -41,12 +41,12 @@ android {
             manifestPlaceholders = [AMAP_KEY: "ee20324fba1c7f4ad7a4a207e7f08e8d"]
         }
     }
-  /*  *//* 放置so的位置需要和配置文件指向的位置一致*//*
+     /*放置so的位置需要和配置文件指向的位置一致*/
     sourceSets {
         main {
             jniLibs.srcDirs=['libs']
         }
-    }*/
+    }
     dexOptions {
         javaMaxHeapSize "4g"
     }

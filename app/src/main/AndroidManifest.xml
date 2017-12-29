@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.netease.nim.live">
+    package="com.netease.nim.demo">
 
     <!-- 加入应用需要的权限 -->
     <!-- 网络相关 -->
@@ -39,7 +39,7 @@
     <!-- SDK权限申明, 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
     <!-- 和下面的uses-permission一起加入到你的AndroidManifest文件中。 -->
     <permission
-        android:name="com.netease.nim.live.permission.RECEIVE_MSG"
+        android:name="com.netease.nim.demo.permission.RECEIVE_MSG"
         android:protectionLevel="signature" />
 
     <!-- 接受SDK消息广播权限， 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
@@ -47,13 +47,13 @@
 
     <!-- 小米推送 -->
     <permission
-        android:name="com.netease.nim.live.permission.MIPUSH_RECEIVE"
+        android:name="com.netease.nim.demo.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.netease.nim.demo.permission.MIPUSH_RECEIVE" />
 
     <application
-        android:name="com.netease.nim.live.NimApplication"
+        android:name="com.netease.nim.demo.NimApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -61,7 +61,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <!-- 测试activity -->
-        <activity android:name="com.netease.nim.live.others.PhotoTakeActivity" />
+        <activity android:name=".activity.PhotoTakeActivity" />
         <!-- 如果IDE是Eclipse，此处可将build.gradle中的AMAP_KEY定义拷贝过来。 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -81,7 +81,7 @@
 
         <!-- 导航页 -->
         <activity
-            android:name="com.netease.nim.live.activity.WelcomeActivity"
+            android:name="com.netease.nim.demo.activity.WelcomeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
@@ -97,15 +97,15 @@
             </intent-filter>
         </activity>
         <!-- 地图界面 -->
-        <activity android:name="com.netease.nim.live.activity.LocationAmapActivity" />
-        <activity android:name="com.netease.nim.live.activity.NavigationAmapActivity" />
+        <activity android:name="com.netease.nim.demo.activity.LocationAmapActivity" />
+        <activity android:name="com.netease.nim.demo.activity.NavigationAmapActivity" />
         <!-- 拍摄视频 -->
-        <activity android:name="com.netease.nim.live.activity.VideoShootActivity" />
+        <activity android:name="com.netease.nim.demo.activity.VideoShootActivity" />
         <!--视频编辑界面-->
-        <activity android:name=".video.videoactivity.ShortVideoEditActivity"></activity>
+        <activity android:name="com.netease.nim.demo.video.videoactivity.ShortVideoEditActivity"></activity>
         <!-- 主界面 -->
         <activity
-            android:name="com.netease.nim.live.MainActivity"
+            android:name="com.netease.nim.demo.MainActivity"
             android:configChanges="keyboardHidden|orientation"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -123,18 +123,18 @@
         -->
         <!-- 登录界面 -->
         <activity
-            android:name="com.netease.nim.live.login.LoginActivity"
+            android:name="com.netease.nim.demo.login.LoginActivity"
             android:configChanges="orientation"
             android:label="@string/login"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- 设置界面 -->
-        <activity android:name="com.netease.nim.live.activity.SettingsActivity" />
+        <activity android:name="com.netease.nim.demo.activity.SettingsActivity" />
         <!-- 用户信息界面 -->
-        <activity android:name="com.netease.nim.live.activity.UserProfileSettingActivity" />
+        <activity android:name="com.netease.nim.demo.activity.UserProfileSettingActivity" />
         <!-- 用户昵称 -->
-        <activity android:name="com.netease.nim.live.activity.UserProfileEditItemActivity" />
+        <activity android:name="com.netease.nim.demo.activity.UserProfileEditItemActivity" />
 
         <!-- 声明云信后台服务 -->
         <service
@@ -174,7 +174,7 @@
         <!-- android:authorities="{包名}.ipc.provider", 请将com.netease.nim.demo替换为自己的包名 -->
         <provider
             android:name="com.netease.nimlib.ipc.NIMContentProvider"
-            android:authorities="com.netease.nim.live.ipc.provider"
+            android:authorities="com.netease.nim.demo.ipc.provider"
             android:exported="false"
             android:process=":core" />
 
@@ -245,13 +245,13 @@
         <!-- 高德地图 -->
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name="com.netease.nim.live.activity.VideoActivity" />
-        <activity android:name="com.netease.nim.live.activity.RedPackageActivity" />
-        <activity android:name="com.netease.nim.live.activity.ChangeActivity" />
-        <activity android:name="com.netease.nim.live.activity.PhotoTakeActivity" />
-        <activity android:name="com.netease.nim.live.activity.ContactsActivity"></activity>
+        <activity android:name="com.netease.nim.demo.activity.VideoActivity" />
+        <activity android:name="com.netease.nim.demo.activity.RedPackageActivity" />
+        <activity android:name="com.netease.nim.demo.activity.ChangeActivity" />
+        <activity android:name="com.netease.nim.demo.activity.PhotoTakeActivity" />
+        <activity android:name="com.netease.nim.demo.activity.ContactsActivity"></activity>
         <!--上传视频服务-->
-        <service android:name=".controller.UploadService" />
+        <service android:name="com.netease.nim.demo.controller.UploadService" />
     </application>
 
 </manifest>

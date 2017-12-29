@@ -3,8 +3,8 @@ package view;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.netease.nim.live.chatvideo.ToggleState;
-import com.netease.nim.live.listener.ToggleListener;
+import com.netease.nim.demo.chatvideo.ToggleState;
+import com.netease.nim.demo.listener.ToggleListener;
 
 /**
  * Created by hzlichengda on 14-3-14.

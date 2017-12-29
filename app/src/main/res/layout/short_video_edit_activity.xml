@@ -55,7 +55,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
-        <com.netease.nim.live.video.view.MoveImageView
+        <com.netease.nim.demo.video.view.MoveImageView
             android:id="@+id/big_textures"
             android:layout_width="95dp"
             android:layout_height="95dp"
@@ -64,7 +64,7 @@
 
     </FrameLayout>
 
-    <com.netease.nim.live.video.view.AutoResizeEditText
+    <com.netease.nim.demo.video.view.AutoResizeEditText
         android:id="@+id/word_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

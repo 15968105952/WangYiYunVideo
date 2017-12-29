@@ -7,7 +7,7 @@
     android:layout_below="@id/video_time"
     android:layout_toRightOf="@id/video_thumb"
     android:visibility="gone"
-    tools:showIn="@layout/video_item_layout">
+    tools:showIn="@layout/PhotoTakeActivity">
 
     <TextView
         android:id="@+id/video_path"

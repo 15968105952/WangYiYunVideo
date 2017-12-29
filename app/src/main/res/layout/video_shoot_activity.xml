@@ -161,7 +161,7 @@
         android:layout_alignParentBottom="true"
         android:visibility="gone">
 
-        <com.netease.nim.live.video.view.CircleProgressView
+        <com.netease.nim.demo.video.view.CircleProgressView
             android:id="@+id/progress_view"
             android:layout_width="74dp"
             android:layout_height="74dp"
